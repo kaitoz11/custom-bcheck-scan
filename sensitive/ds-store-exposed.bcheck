@@ -19,7 +19,7 @@ define:
 
 run for each:
     injections = "..", "..;", "."
-    file = "js", "static", "img"
+    files = "js", "static", "img"
 
 given path then
     # append the injection to the first part of the path
@@ -30,14 +30,14 @@ given path then
 
     send request called check2:
         method: "GET"
-        replacing path: {regex_replace({base.request.url.path}, "\.*([^\/]+)\/", `$1{injections}/{file}`)}
+        replacing path: {regex_replace({base.request.url.path}, "\.*([^\/]+)\/", `$1{injections}/{files}`)}
 
 
     # if the response of '/static/main.js' and  '/static{injections}/main.js' is the same then we have an issue
     if {check1.response.status_code} is "200" then
         if {check1.response.body} is {base.response.body} then
             report issue:
-                severity: High
+                severity: high
                 confidence: tentative
                 detail: `{issueDetail}`
                 remediation: `{issueRemediation}`
