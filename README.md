@@ -1,5 +1,7 @@
 # Custom BCheck Scan
 
+a
+
 This repository stores some of my custom BCheck Scan configurations.
 Its goal is to identify intriguing elements that warrant further manual testing.
 
